@@ -88,11 +88,37 @@ Get-Service -name *svc*
 Get-Service | Where-Object {$_.Status -eq "Running"}
 
 #check if a user is an admin or not
-Get-LocalGroupMember -Group "Administrators"
+function isUserAdmin {
+    param (
+        $user
+    )
+    $compName = "HAMAMIY\"
+    $user = $compName+$user
+    
+    $allAdmins = (Get-LocalGroupMember -Group "Administrators")
+    $userIsAdmin = $false
+
+    foreach ($admin in $allAdmins) {
+        if($admin.Name -eq $user){
+            $userIsAdmin = $true
+            Write-Host $user is admin
+            break
+        }
+    }
+
+    if (!$userIsAdmin){
+        Write-Host $user is NOT admin
+    }
+}
+
+isUserAdmin "yaokljel"
+
+Write-Host (Get-LocalGroupMember -Group "Administrators" -Member "public")
 
 #change remote control cmputer name and restart
 Rename-Computer -ComputerName "yaelh" -NewName "hamamiy" -Force -Restart
 
+#print the number of params of the func
 function PrintArgs()
 {
     Write-Host "You passed $($args.Length) arguments"
