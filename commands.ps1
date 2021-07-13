@@ -5,7 +5,7 @@ Write-Host -ForegroundColor Cyan yael
 Write-Host enter number of bytes to convert to GB
 $bytes = Read-Host
 
-Write-Host $bytes bytes is ($bytes/1000) GB
+Write-Host $bytes bytes is ($bytes/1GB) GB
 
 # 2 input strings into 1
 Write-Host Please enter a string
