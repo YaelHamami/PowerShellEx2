@@ -67,12 +67,12 @@ $secNumber = Read-Host
  # Get all running and stopped services
  Get-Service
 
-#  # Add 10 random numbers to an array
- $list = New-Object Collections.Generic.List[Int]
+ # Add 10 random numbers to an array
+ $list = @()
  
  for ($i = 0; $i -lt 10; $i++){
      $randomNmber = Get-Random
-     $list.Add($randomNmber)
+     $list += ($randomNmber)
  }
 
 # Get th elargest number in the array
